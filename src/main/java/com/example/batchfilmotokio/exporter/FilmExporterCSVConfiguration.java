@@ -24,6 +24,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import java.nio.file.Paths;
+
 @Configuration
 @Slf4j
 @RequiredArgsConstructor
@@ -62,7 +64,7 @@ public class FilmExporterCSVConfiguration {
     public FlatFileItemWriter<FilmDTO> writer() {
         FlatFileItemWriter<FilmDTO> writer = new FlatFileItemWriter<>();
 
-        writer.setResource(new FileSystemResource("films.csv"));
+        writer.setResource(new FileSystemResource(Paths.get("src/main/resources/static/exports", "film.csv")));
 
         writer.setAppendAllowed(true);
 
